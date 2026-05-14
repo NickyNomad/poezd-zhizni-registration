@@ -166,6 +166,15 @@ h1 { font-family: "Oldtimer", "Golos Text", Arial, sans-serif; max-width: 850px;
 .footerLogo { height: 56px; width: auto; object-fit: contain; }
 .footerTitle { margin: 0 0 6px; font-weight: 900; }
 .footer p { color: rgba(255,255,255,.86); }
+.redCard .cardInner {
+  color: #ffffff;
+}
+
+.redCard .cardInner h3,
+.redCard .cardInner p {
+  color: #ffffff;
+}
+
 
 @media (max-width: 980px) {
   .heroGrid, .aboutGrid, .registrationGrid { grid-template-columns: 1fr; }

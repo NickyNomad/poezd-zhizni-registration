@@ -205,3 +205,11 @@ h1 { font-family: "Oldtimer", "Golos Text", Arial, sans-serif; max-width: 850px;
   font-size: 13px;
   opacity: 0.72;
 }
+.redCard .cardInner {
+  color: #ffffff;
+}
+
+.redCard .cardInner h3,
+.redCard .cardInner p {
+  color: #ffffff;
+}

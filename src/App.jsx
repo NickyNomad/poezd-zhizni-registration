@@ -11,7 +11,7 @@ const BRAND_ASSETS = {
   wave: "/brand/wave-red-1.svg",
   dots: "/brand/dots.svg",
 };
-
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxI7nem6lQkvv8X_ESpJaL-UP7QiVyGSyqZeCmvg_A5JZafo8uBR0WdQU6tlwtxHGB3/exec";
 const EVENT = {
   title: "Городской конкурс профессионального мастерства «Московские мастера»",
   subtitle: "Финал конкурса по профессии «Помощник по уходу»",
@@ -37,20 +37,22 @@ export default function App() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     const nextValue = type === "checkbox" ? checked : value;
 
     setForm((prev) => ({ ...prev, [name]: nextValue }));
-    setErrors((prev) => ({ ...prev, [name]: undefined }));
+    setErrors((prev) => ({ ...prev, [name]: undefined, submit: undefined }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const validationErrors = validateRegistrationForm(form);
     setErrors(validationErrors);
+
     if (Object.keys(validationErrors).length > 0) return;
 
     const payload = {
@@ -61,10 +63,30 @@ export default function App() {
       phone: form.phone.trim(),
       createdAt: new Date().toISOString(),
       event: EVENT.title,
+      source: "Timeweb landing",
     };
 
-    console.log("registration_form_payload", payload);
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      setSubmitted(true);
+      setForm(EMPTY_FORM);
+    } catch (error) {
+      setErrors({
+        submit: "Не удалось отправить регистрацию. Попробуйте позже или свяжитесь с организаторами.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -76,6 +98,7 @@ export default function App() {
         form={form}
         errors={errors}
         submitted={submitted}
+        isSubmitting={isSubmitting}
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
@@ -203,7 +226,7 @@ function Place() {
   );
 }
 
-function Registration({ form, errors, submitted, onChange, onSubmit }) {
+function Registration({ form, errors, submitted, isSubmitting, onChange, onSubmit }) {
   return (
     <section id="registration" className="section shell">
       <div className="registrationGrid">
@@ -218,7 +241,7 @@ function Registration({ form, errors, submitted, onChange, onSubmit }) {
             <div className="successBox">
               <div className="successIcon"><Icon name="check" /></div>
               <h3>Вы в списке гостей</h3>
-              <p>Регистрация принята. Электронное подтверждение будет отправлено на указанную почту после подключения почтовой отправки.</p>
+              <p>Регистрация принята. Электронный билет отправлен на указанную почту.</p>
             </div>
           ) : (
             <form onSubmit={onSubmit} noValidate className="form">
@@ -234,7 +257,12 @@ function Registration({ form, errors, submitted, onChange, onSubmit }) {
               </label>
               {errors.consent ? <p className="errorText">{errors.consent}</p> : null}
 
-              <button type="submit" className="submitButton">Зарегистрироваться</button>
+              <button type="submit" className="submitButton" disabled={isSubmitting}>
+                {isSubmitting ? "Отправляем..." : "Зарегистрироваться"}
+              </button>
+              {errors.submit ? (
+                <p className="formError">{errors.submit}</p>
+              ) : null}
             </form>
           )}
         </div>

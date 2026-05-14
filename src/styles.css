@@ -209,3 +209,11 @@ h1 { font-family: "Oldtimer", "Golos Text", Arial, sans-serif; max-width: 850px;
   font-size: 13px;
   opacity: 0.72;
 }
+.formError {
+  margin: 12px 0 0;
+  color: #D02027;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+

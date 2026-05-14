@@ -11,7 +11,7 @@ const BRAND_ASSETS = {
   wave: "/brand/wave-red-1.svg",
   dots: "/brand/dots.svg",
 };
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxI7nem6lQkvv8X_ESpJaL-UP7QiVyGSyqZeCmvg_A5JZafo8uBR0WdQU6tlwtxHGB3/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjIZGaF5_3In15ygykLGTiPM-YfO-r3gEzJLooH8flBqpho4zJetSj8Nux_GGbd_yH/exec";
 const EVENT = {
   title: "Городской конкурс профессионального мастерства «Московские мастера»",
   subtitle: "Финал конкурса по профессии «Помощник по уходу»",
@@ -115,7 +115,6 @@ function Hero() {
 
       <header className="topbar shell">
         <img src={BRAND_ASSETS.logoWhite} alt="Московские мастера" className="topLogo" />
-        <a href="#registration" className="topLink">Регистрация</a>
       </header>
 
       <div className="heroGrid shell">
@@ -211,6 +210,9 @@ function Place() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+            <div className="mapPinOverlay" aria-hidden="true">
+              <Icon name="pin" />
+            </div>
           </div>
           <div className="mapInfo">
             <div>

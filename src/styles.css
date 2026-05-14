@@ -74,7 +74,7 @@ svg { width: 1.25rem; height: 1.25rem; flex: none; }
 .patternBg { position: absolute; inset: 0; background-repeat: repeat; background-position: center; background-size: 760px auto; opacity: .25; }
 .patternBgSmall { background-size: 560px auto; opacity: .15; }
 .heroOverlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,0,32,.95), rgba(208,32,39,.86), rgba(247,90,7,.78)); }
-.topbar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; }
+.topbar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: flex-start; gap: 16px; padding-top: 24px; }
 .topLogo { height: 64px; width: auto; object-fit: contain; }
 .topLink { display: inline-flex; padding: 12px 20px; border-radius: 999px; background: white; color: var(--deep-red); font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; box-shadow: 0 16px 35px rgba(42,23,25,.18); }
 .heroGrid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 48px; padding: 56px 0 82px; }
@@ -134,8 +134,11 @@ h1 { font-family: "Oldtimer", "Golos Text", Arial, sans-serif; max-width: 850px;
 .detailCard p { margin: 0; color: var(--brown); line-height: 1.55; }
 .mapButton { margin-top: 0; }
 .mapCard { margin-top: 28px; overflow: hidden; border-radius: 32px; background: white; box-shadow: 0 18px 45px rgba(42,23,25,.08); }
-.mapFrame { width: 100%; height: 420px; background: var(--cream); }
+.mapFrame { position: relative; width: 100%; height: 420px; background: var(--cream); }
 .mapFrame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.mapPinOverlay { position: absolute; left: 50%; top: 50%; z-index: 2; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 999px; background: #D02027; color: #ffffff; box-shadow: 0 16px 34px rgba(42,23,25,.28); transform: translate(-50%, -95%); pointer-events: none; }
+.mapPinOverlay::after { content: ""; position: absolute; left: 50%; bottom: -10px; width: 20px; height: 20px; background: #D02027; transform: translateX(-50%) rotate(45deg); border-radius: 4px; }
+.mapPinOverlay svg { position: relative; z-index: 1; width: 28px; height: 28px; }
 .mapInfo { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 24px; border-top: 1px solid rgba(247,90,7,.18); }
 .mapInfo h3 { margin: 0 0 6px; color: var(--ink); font-size: 22px; font-weight: 950; }
 .mapInfo p { margin: 0; color: var(--brown); line-height: 1.55; }
@@ -166,15 +169,6 @@ h1 { font-family: "Oldtimer", "Golos Text", Arial, sans-serif; max-width: 850px;
 .footerLogo { height: 56px; width: auto; object-fit: contain; }
 .footerTitle { margin: 0 0 6px; font-weight: 900; }
 .footer p { color: rgba(255,255,255,.86); }
-.redCard .cardInner {
-  color: #ffffff;
-}
-
-.redCard .cardInner h3,
-.redCard .cardInner p {
-  color: #ffffff;
-}
-
 
 @media (max-width: 980px) {
   .heroGrid, .aboutGrid, .registrationGrid { grid-template-columns: 1fr; }
@@ -200,6 +194,8 @@ h1 { font-family: "Oldtimer", "Golos Text", Arial, sans-serif; max-width: 850px;
   .footerInner { align-items: flex-start; flex-direction: column; }
 
   .mapFrame { height: 320px; }
+  .mapPinOverlay { width: 48px; height: 48px; transform: translate(-50%, -95%); }
+  .mapPinOverlay svg { width: 24px; height: 24px; }
   .mapInfo { align-items: stretch; flex-direction: column; padding: 20px; }
   .mapInfo .button { width: 100%; }
 }
@@ -209,11 +205,3 @@ h1 { font-family: "Oldtimer", "Golos Text", Arial, sans-serif; max-width: 850px;
   font-size: 13px;
   opacity: 0.72;
 }
-.formError {
-  margin: 12px 0 0;
-  color: #D02027;
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: 700;
-}
-

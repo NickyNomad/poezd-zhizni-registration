@@ -205,11 +205,106 @@ h1 { font-family: "Oldtimer", "Golos Text", Arial, sans-serif; max-width: 850px;
   font-size: 13px;
   opacity: 0.72;
 }
-.redCard .cardInner {
-  color: #ffffff;
+
+/* Patch: leave only ticket, then map */
+.compactHero {
+  min-height: auto;
+  padding-bottom: 44px;
 }
 
+.ticketOnly {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: 44px;
+  padding-bottom: 10px;
+}
+
+.ticketWrapOnly {
+  width: min(100%, 760px);
+}
+
+.eventTicket .ticketPattern {
+  height: 190px;
+}
+
+.eventTicket .ticketBody {
+  padding: 30px;
+}
+
+.eventTicket .ticketData {
+  padding: 22px;
+}
+
+.eventTicket .ticketLine {
+  grid-template-columns: 150px 1fr;
+}
+
+.eventTicket .ticketLine strong {
+  font-size: 18px;
+}
+
+.mapOnlySection {
+  background: rgba(255, 182, 137, 0.35);
+  padding: 34px 0 64px;
+}
+
+.mapOnlyShell {
+  padding: 0;
+}
+
+.mapOnlySection .mapCard {
+  margin-top: 0;
+}
+
+.mapOnlySection .mapInfo h3,
+.mapOnlySection .mapInfo p {
+  margin: 0;
+}
+
+.mapOnlySection .mapInfo h3 {
+  margin-bottom: 6px;
+}
+
+.redCard .cardInner,
 .redCard .cardInner h3,
 .redCard .cardInner p {
   color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .compactHero {
+    padding-bottom: 30px;
+  }
+
+  .ticketOnly {
+    padding-top: 28px;
+    padding-bottom: 0;
+  }
+
+  .eventTicket .ticketPattern {
+    height: 128px;
+  }
+
+  .eventTicket .ticketBody {
+    padding: 20px;
+  }
+
+  .eventTicket .ticketData {
+    padding: 16px;
+  }
+
+  .eventTicket .ticketLine {
+    grid-template-columns: 108px 1fr;
+    gap: 10px;
+  }
+
+  .eventTicket .ticketLine strong {
+    font-size: 15px;
+  }
+
+  .mapOnlySection {
+    padding: 26px 0 46px;
+  }
 }

@@ -92,7 +92,6 @@ export default function App() {
   return (
     <main className="page">
       <Hero />
-      <About />
       <Place />
       <Registration
         form={form}
@@ -109,7 +108,7 @@ export default function App() {
 
 function Hero() {
   return (
-    <section className="hero">
+    <section className="hero compactHero">
       <PatternBackground />
       <div className="heroOverlay" />
 
@@ -117,28 +116,11 @@ function Hero() {
         <img src={BRAND_ASSETS.logoWhite} alt="Московские мастера" className="topLogo" />
       </header>
 
-      <div className="heroGrid shell">
-        <div className="heroContent">
-          <div className="eyebrow"><Icon name="train" /> Финал конкурса · Поезд жизни</div>
-          <h1>{EVENT.title}</h1>
-          <p className="lead">{EVENT.subtitle} — событие о профессионализме, заботе и людях, которые каждый день помогают другим.</p>
-
-          <div className="infoGrid">
-            <InfoPill icon="calendar" label="Дата" value={EVENT.shortDate} />
-            <InfoPill icon="clock" label="Сбор гостей" value={EVENT.guestArrival} />
-            <InfoPill icon="pin" label="Место" value={EVENT.place} />
-          </div>
-
-          <div className="actions">
-            <a href="#registration" className="button buttonLight">Получить билет гостя <Icon name="arrow" /></a>
-            <a href="#place" className="button buttonGhost">Когда и где</a>
-          </div>
-        </div>
-
-        <div className="ticketWrap">
+      <div className="ticketOnly shell">
+        <div className="ticketWrap ticketWrapOnly">
           <div className="ticketDecor decorOne" />
           <div className="ticketDecor decorTwo" />
-          <article className="ticket">
+          <article className="ticket eventTicket">
             <img src={BRAND_ASSETS.patternLogo} alt="Фирменный паттерн Московские мастера" className="ticketPattern" />
             <div className="ticketBody">
               <div className="ticketHead">
@@ -149,10 +131,13 @@ function Hero() {
                 <div className="ticketIcon"><Icon name="train" /></div>
               </div>
               <div className="ticketData">
-                <TicketLine label="Маршрут" value="Забота · Профессия · Признание" />
-                <TicketLine label="Отправление" value={`${EVENT.shortDate} · ${EVENT.startTime}`} />
-                <TicketLine label="Станция" value={EVENT.place} />
-                <p className="ticketNote">После отправки формы данные попадут в список гостей, а подтверждение придет на указанную почту.</p>
+                <TicketLine label="Мероприятие" value="Финал конкурса «Московские мастера»" />
+                <TicketLine label="Профессия" value="Помощник по уходу" />
+                <TicketLine label="Дата" value={EVENT.date} />
+                <TicketLine label="Сбор гостей" value={EVENT.guestArrival} />
+                <TicketLine label="Начало" value={EVENT.startTime} />
+                <TicketLine label="Адрес" value={`${EVENT.address}, ${EVENT.place}`} />
+                <p className="ticketNote">Заполните форму регистрации ниже — электронный билет придет на указанную почту.</p>
               </div>
             </div>
           </article>
@@ -161,43 +146,10 @@ function Hero() {
     </section>
   );
 }
-
-function About() {
-  return (
-    <section className="section shell">
-      <div className="aboutGrid">
-        <article className="card cardWide">
-          <p className="sectionLabel">О мероприятии</p>
-          <h2>Финальная станция большого профессионального маршрута</h2>
-          <p>Финал конкурса «Московские мастера» по профессии «Помощник по уходу» объединит участников, экспертов, представителей организаций социальной защиты и гостей мероприятия. Это пространство, где профессиональные навыки, человеческое участие и уважение к труду помощника по уходу становятся главным содержанием дня.</p>
-        </article>
-        <article className="card redCard">
-          <PatternBackground small />
-          <div className="redCardOverlay" />
-          <div className="cardInner">
-            <div className="badgeIcon"><Icon name="check" /></div>
-            <h3>Зарегистрируйтесь заранее</h3>
-            <p>Заполните короткую форму. Данные попадут в список гостей, а подтверждение регистрации будет отправлено на электронную почту.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-  );
-}
-
 function Place() {
   return (
-    <section id="place" className="placeSection">
-      <div className="shell section">
-        <p className="sectionLabel">Когда и где</p>
-        <h2 className="sectionTitle">Информация для гостей</h2>
-        <div className="detailGrid">
-          <DetailCard icon="calendar" title="Дата" text={EVENT.date} />
-          <DetailCard icon="clock" title="Сбор гостей" text={EVENT.guestArrival} />
-          <DetailCard icon="clock" title="Начало" text={EVENT.startTime} />
-          <DetailCard icon="pin" title="Адрес" text={EVENT.address} />
-        </div>
-
+    <section id="place" className="mapOnlySection">
+      <div className="shell mapOnlyShell">
         <div className="mapCard" aria-label="Карта проезда к месту проведения">
           <div className="mapFrame">
             <iframe
@@ -218,16 +170,14 @@ function Place() {
             <div>
               <h3>{EVENT.place}</h3>
               <p>{EVENT.address}</p>
-              <p className="mapCoords">Координаты: {EVENT.coordinates.lat}, {EVENT.coordinates.lon}</p>
             </div>
-            <a href={EVENT.routeUrl} target="_blank" rel="noreferrer" className="button buttonRed mapButton">Открыть маршрут</a>
+            <a href={EVENT.mapUrl} target="_blank" rel="noreferrer" className="button buttonRed mapButton">Открыть карту</a>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
 function Registration({ form, errors, submitted, isSubmitting, onChange, onSubmit }) {
   return (
     <section id="registration" className="section shell">

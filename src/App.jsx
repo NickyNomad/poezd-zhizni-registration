@@ -11,7 +11,7 @@ const BRAND_ASSETS = {
   wave: "/brand/wave-red-1.svg",
   dots: "/brand/dots.svg",
 };
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjIZGaF5_3In15ygykLGTiPM-YfO-r3gEzJLooH8flBqpho4zJetSj8Nux_GGbd_yH/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxI7nem6lQkvv8X_ESpJaL-UP7QiVyGSyqZeCmvg_A5JZafo8uBR0WdQU6tlwtxHGB3/exec";
 const EVENT = {
   title: "Финал Городского конкурса профессионального мастерства «Московские мастера» по профессии «Помощник по уходу»",
   subtitle: "Финал конкурса по профессии «Помощник по уходу»",

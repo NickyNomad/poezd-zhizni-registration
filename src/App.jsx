@@ -279,21 +279,11 @@ function Registration({ form, errors, submitted, isSubmitting, onChange, onSubmi
             <form onSubmit={onSubmit} noValidate className="form">
               <FormField icon="user" label="ФИО" name="fullName" value={form.fullName} onChange={onChange} placeholder="Иванов Иван Иванович" error={errors.fullName} />
               <FormField icon="briefcase" label="Должность" name="position" value={form.position} onChange={onChange} placeholder="Помощник по уходу" error={errors.position} />
-              <FormField
-                icon="building"
-                label="Организация"
-                name="organization"
+              <OrganizationField
                 value={form.organization}
                 onChange={onChange}
-                placeholder="Начните вводить название организации"
                 error={errors.organization}
-                list="organizations-list"
               />
-              <datalist id="organizations-list">
-                {ORGANIZATIONS.map((organization) => (
-                  <option key={organization} value={organization} />
-                ))}
-              </datalist>
               <FormField icon="mail" label="Электронная почта" name="email" type="email" value={form.email} onChange={onChange} placeholder="example@mail.ru" error={errors.email} />
               <FormField
                 icon="phone"
@@ -376,6 +366,70 @@ function DetailCard({ icon, title, text }) {
       <h3>{title}</h3>
       <p>{text}</p>
     </article>
+  );
+}
+
+function OrganizationField({ value, onChange, error }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const query = String(value || "").trim().toLowerCase();
+  const suggestions = ORGANIZATIONS.filter((organization) =>
+    organization.toLowerCase().includes(query)
+  ).slice(0, 8);
+  const showSuggestions = isOpen && query.length > 0 && suggestions.length > 0;
+
+  const setOrganization = (organization) => {
+    onChange({
+      target: {
+        name: "organization",
+        value: organization,
+        type: "text",
+      },
+    });
+    setIsOpen(false);
+  };
+
+  return (
+    <label className="field autocompleteField">
+      <span className="fieldLabel">Организация</span>
+      <span className={`inputWrap ${error ? "inputError" : ""}`}>
+        <Icon name="building" />
+        <input
+          name="organization"
+          value={value}
+          onChange={(event) => {
+            onChange(event);
+            setIsOpen(true);
+          }}
+          onFocus={() => setIsOpen(true)}
+          onBlur={() => window.setTimeout(() => setIsOpen(false), 140)}
+          placeholder="Начните вводить название организации"
+          type="text"
+          autoComplete="off"
+          aria-autocomplete="list"
+          aria-expanded={showSuggestions}
+          aria-invalid={Boolean(error)}
+        />
+      </span>
+
+      {showSuggestions ? (
+        <div className="autocompleteMenu" role="listbox">
+          {suggestions.map((organization) => (
+            <button
+              type="button"
+              key={organization}
+              className="autocompleteOption"
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => setOrganization(organization)}
+              role="option"
+            >
+              {organization}
+            </button>
+          ))}
+        </div>
+      ) : null}
+
+      {error ? <span className="errorText">{error}</span> : null}
+    </label>
   );
 }
 

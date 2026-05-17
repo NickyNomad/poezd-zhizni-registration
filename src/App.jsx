@@ -328,8 +328,9 @@ function Footer() {
         <img src={BRAND_ASSETS.logoWhite} alt="Московские мастера" className="footerLogo" />
         <div>
           <p className="footerTitle">По вопросам регистрации:</p>
-          <p>+7 964 639-46-07</p>
-		  <p>voronovaev1@social.mos.ru</p>
+          <p>+7 999 803-36-13</p>
+		  <p>malikovna@social.mos.ru</p>
+		  <p>By NickyNomad</p>
         </div>
       </div>
     </footer>

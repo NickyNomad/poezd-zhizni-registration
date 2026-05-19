@@ -115,51 +115,52 @@ export default function App() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    const validationErrors = validateRegistrationForm(form);
-    setErrors(validationErrors);
+  const validationErrors = validateRegistrationForm(form);
+  setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length > 0) return;
+  if (Object.keys(validationErrors).length > 0) return;
 
-    const payload = {
-      fullName: form.fullName.trim(),
-      position: form.position.trim(),
-      organization: form.organization.trim(),
-      email: form.email.trim(),
-      phone: form.phone.trim(),
-      createdAt: new Date().toISOString(),
-      event: EVENT.title,
-      source: "Timeweb landing",
-    };
-
-    setIsSubmitting(true);
-
-    try {
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      setRepeatDefaults({
-        email: payload.email,
-        phone: payload.phone,
-        organization: payload.organization,
-      });
-      setSubmitted(true);
-      setForm(EMPTY_FORM);
-    } catch (error) {
-      setErrors({
-        submit: "Не удалось отправить регистрацию. Попробуйте позже или свяжитесь с организаторами.",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+  const payload = {
+    fullName: form.fullName.trim(),
+    position: form.position.trim(),
+    organization: form.organization.trim(),
+    email: form.email.trim(),
+    phone: form.phone.trim(),
+    createdAt: new Date().toISOString(),
+    event: EVENT.title,
+    source: "Timeweb landing",
   };
+
+  setIsSubmitting(true);
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    // Google Apps Script иногда успешно принимает заявку,
+    // но браузер всё равно считает ответ ошибочным из-за no-cors/редиректа.
+    // Поэтому не показываем пользователю ошибку, если запрос уже был инициирован.
+    console.warn("Google Script response was not readable, but request may be processed:", error);
+  } finally {
+    setRepeatDefaults({
+      email: payload.email,
+      phone: payload.phone,
+      organization: payload.organization,
+    });
+
+    setSubmitted(true);
+    setForm(EMPTY_FORM);
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <main className="page">

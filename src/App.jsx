@@ -13,27 +13,26 @@ const BRAND_ASSETS = {
 };
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxI7nem6lQkvv8X_ESpJaL-UP7QiVyGSyqZeCmvg_A5JZafo8uBR0WdQU6tlwtxHGB3/exec";
 const EVENT = {
-  title: "Финал Городского конкурса профессионального мастерства «Московские мастера» по профессии «Помощник по уходу»",
-  subtitle: "Финал конкурса по профессии «Помощник по уходу»",
-  date: "26 мая 2026 года",
-  shortDate: "26 мая 2026",
+  title: "Финал Городского конкурса профессионального мастерства «Московские мастера» по профессии «Специалист по социальной реабилитации»",
+  subtitle: "Финал конкурса по профессии «Специалист по социальной реабилитации»",
+  concept: "Новая реальность",
+  date: "17 июня 2026 года",
+  shortDate: "17 июня 2026",
   guestArrival: "9:30",
   startTime: "11:00",
-  place: "Loft Hall #2",
-  address: "Москва, Ленинская слобода, 26 стр. 11",
-  coordinates: {
-    lat: 55.708592,
-    lon: 37.651008,
-  },
+  place: "Hertz Hall",
+  address: "Москва, ул. Большая Почтовая, д.40, стр.10 м. Электрозаводская",
   mapUrl:
-    "https://yandex.ru/maps/213/moscow/house/ulitsa_leninskaya_sloboda_26s11/Z04YcAJhSUUPQFtvfXtxeXlqZg%3D%3D/?ll=37.651008%2C55.708592&z=17",
+    "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B0%D1%8F%20%D0%9F%D0%BE%D1%87%D1%82%D0%BE%D0%B2%D0%B0%D1%8F%2C%20%D0%B4.40%2C%20%D1%81%D1%82%D1%80.10%20Hertz%20Hall&z=17",
   routeUrl:
-    "https://yandex.ru/maps/213/moscow/?ll=37.651008%2C55.708592&mode=routes&rtext=~55.708592%2C37.651008&rtt=auto&ruri=~&z=17",
+    "https://yandex.ru/maps/?mode=routes&rtext=~%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B0%D1%8F%20%D0%9F%D0%BE%D1%87%D1%82%D0%BE%D0%B2%D0%B0%D1%8F%2C%20%D0%B4.40%2C%20%D1%81%D1%82%D1%80.10%20Hertz%20Hall&rtt=auto&z=17",
   mapEmbedUrl:
-    "https://yandex.ru/map-widget/v1/?ll=37.651008%2C55.708592&mode=search&text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D0%A1%D0%BB%D0%BE%D0%B1%D0%BE%D0%B4%D0%B0%2C%2026%D1%8111&z=17",
+    "https://yandex.ru/map-widget/v1/?mode=search&text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B0%D1%8F%20%D0%9F%D0%BE%D1%87%D1%82%D0%BE%D0%B2%D0%B0%D1%8F%2C%20%D0%B4.40%2C%20%D1%81%D1%82%D1%80.10%20Hertz%20Hall&z=17",
 };
 
 const ORGANIZATIONS = [
+  "ГБОУ Центр реабилитации и образования №7",
+  "ГБОУ РШИ 32",
   "ГБУ Социальный Дом \"Нагатино-Садовники\"",
   "ГБУ Геронтопсихиатрический центр \"Орехово-Борисово\"",
   "ГБУ Социальный дом \"Филимонки\"",
@@ -63,8 +62,19 @@ const ORGANIZATIONS = [
   "ГБУ Геронтологический центр \"Дмитровский\"",
   "ГКУ Центр социальной адаптации для лиц без определенного места жительства и занятий имени Е. П. Глинки",
   "ГБУ Комплекс социальных жилых домов",
-  "ГБУ Научно-практический реабилитационный центр",
-  "ГБУ Социальный дом \"Ступино\" Филиал \"Данки\""
+  "ГБУ Социальный дом \"Ступино\" Филиал \"Данки\"",
+  "ГБУ Дом-интернат для сопровождаемого проживания «Гурьевский»",
+  "ГБУ ЦССВ \"Маяк\"",
+  "ГБУ ЦСПР Семь-Я",
+  "ГБОУ ШОР № 1",
+  "ГБУ РЦИМФКиС УСЗН ЗелАО",
+  "ГБОУ ЦРО №4",
+  "ГБУ МГЦР",
+  "ГБУ ЦРИ \"Красная Пахра\"",
+  "ГБУ ЦСИ Дианы Гурцкая",
+  "ГБУ \"КРОЦ\"",
+  "ГБУ НПЦ МСР им. Л.И.Швецовой",
+  "ГБУ НПРЦ"
  ];
 
 function formatRussianPhone(value) {
@@ -130,7 +140,7 @@ export default function App() {
       phone: form.phone.trim(),
       createdAt: new Date().toISOString(),
       event: EVENT.title,
-      source: "Timeweb landing",
+      source: "Timeweb landing — social rehabilitation final",
     };
 
     setIsSubmitting(true);
@@ -144,7 +154,9 @@ export default function App() {
         },
         body: JSON.stringify(payload),
       });
-
+    } catch (error) {
+      console.warn("Google Script response was not readable, but request may be processed:", error);
+    } finally {
       setRepeatDefaults({
         email: payload.email,
         phone: payload.phone,
@@ -152,11 +164,6 @@ export default function App() {
       });
       setSubmitted(true);
       setForm(EMPTY_FORM);
-    } catch (error) {
-      setErrors({
-        submit: "Не удалось отправить регистрацию. Попробуйте позже или свяжитесь с организаторами.",
-      });
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -191,32 +198,40 @@ function Hero() {
 
       <div className="heroTicketGrid shell">
         <div className="heroCopy">
+          <p className="conceptLabel">{EVENT.concept}</p>
           <h1>{EVENT.title}</h1>
           <p className="heroAboutText">
-            Событие объединит участников, экспертов, представителей организаций социальной защиты и гостей мероприятия. Это пространство, где профессиональные навыки, человеческое участие и уважение к труду помощника по уходу становится главным содержанием дня.
+            Событие объединит участников, экспертов, представителей организаций социальной защиты и гостей мероприятия. Это пространство, где профессиональные навыки, человекоцентричный подход и уважение к возможностям каждого человека становятся основой новой реальности.
           </p>
-        </div>
 
-        <div className="ticketWrap ticketWrapHero">
-          <div className="ticketDecor decorOne" />
-          <div className="ticketDecor decorTwo" />
-          <article className="ticket eventTicket">
-            <img src={BRAND_ASSETS.patternLogo} alt="Фирменный паттерн Московские мастера" className="ticketPattern" />
-            <div className="ticketBody">
-              <div className="ticketHead ticketHeadClean">
-                <h2>Поезд жизни</h2>
-                <div className="ticketIcon"><Icon name="train" /></div>
+          <div className="eventInfoPanel" aria-label="Основная информация о мероприятии">
+            <div className="eventInfoTop">
+              <span>Информация для гостей</span>
+            </div>
+            <div className="eventInfoGrid">
+              <div>
+                <span>Дата</span>
+                <strong>{EVENT.date}</strong>
               </div>
-              <div className="ticketData">
-                <TicketLine label="Маршрут" value="Детство · Юность · Зрелость · Мудрость" />
-                <TicketLine label="Дата" value={EVENT.date} />
-                <TicketLine label="Сбор гостей" value={EVENT.guestArrival} />
-                <TicketLine label="Отправление" value={EVENT.startTime} />
-                <TicketLine label="Станция" value={`${EVENT.place}, ${EVENT.address}`} />
-                <p className="ticketNote">Заполните форму регистрации ниже — электронный билет придет на указанную почту.</p>
+              <div>
+                <span>Сбор гостей</span>
+                <strong>{EVENT.guestArrival}</strong>
+              </div>
+              <div>
+                <span>Начало</span>
+                <strong>{EVENT.startTime}</strong>
+              </div>
+              <div>
+                <span>Площадка</span>
+                <strong>{EVENT.place}</strong>
+              </div>
+              <div className="eventInfoAddress">
+                <span>Адрес</span>
+                <strong>{EVENT.address}</strong>
               </div>
             </div>
-          </article>
+            <p>Заполните форму регистрации ниже — электронный билет придет на указанную почту.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -229,7 +244,7 @@ function Place() {
         <div className="mapCard" aria-label="Карта проезда к месту проведения">
           <div className="mapFrame">
             <iframe
-              title="Яндекс Карта — Москва, Ленинская слобода, 26 стр. 11"
+              title="Яндекс Карта — Москва, Большая Почтовая, 40 стр. 10"
               src={EVENT.mapEmbedUrl}
               width="100%"
               height="100%"
@@ -238,9 +253,6 @@ function Place() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="mapPinOverlay" aria-hidden="true">
-              <Icon name="pin" />
-            </div>
           </div>
           <div className="mapInfo">
             <div>
@@ -261,7 +273,7 @@ function Registration({ form, errors, submitted, isSubmitting, onChange, onSubmi
         <div>
           <p className="sectionLabel">Регистрация</p>
           <h2 className="sectionTitle">Ваш билет на финал конкурса</h2>
-          <p className="sectionText">Укажите данные гостя. После отправки формы регистрация будет зафиксирована, а на указанную электронную почту придет подтверждение.</p>
+          <p className="sectionText">Укажите данные гостя. После отправки формы регистрация будет зафиксирована, а на указанную электронную почту придет подтверждение и билет.</p>
         </div>
 
         <div className="formCard">
@@ -278,7 +290,7 @@ function Registration({ form, errors, submitted, isSubmitting, onChange, onSubmi
           ) : (
             <form onSubmit={onSubmit} noValidate className="form">
               <FormField icon="user" label="ФИО" name="fullName" value={form.fullName} onChange={onChange} placeholder="Иванов Иван Иванович" error={errors.fullName} />
-              <FormField icon="briefcase" label="Должность" name="position" value={form.position} onChange={onChange} placeholder="Помощник по уходу" error={errors.position} />
+              <FormField icon="briefcase" label="Должность" name="position" value={form.position} onChange={onChange} placeholder="Специалист по социальной реабилитации" error={errors.position} />
               <OrganizationField
                 value={form.organization}
                 onChange={onChange}
@@ -328,8 +340,9 @@ function Footer() {
         <img src={BRAND_ASSETS.logoWhite} alt="Московские мастера" className="footerLogo" />
         <div>
           <p className="footerTitle">По вопросам регистрации:</p>
-          <p>+7 964 639-46-07</p>
-		  <p>voronovaev1@social.mos.ru</p>
+          <p>+7 999 803-36-13</p>
+          <p>malikovna@social.mos.ru</p>
+          <p className="footerCredit">By NickyNomad</p>
         </div>
       </div>
     </footer>

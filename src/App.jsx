@@ -198,7 +198,6 @@ function Hero() {
 
       <div className="heroTicketGrid shell">
         <div className="heroCopy">
-          <p className="conceptLabel">{EVENT.concept}</p>
           <h1>{EVENT.title}</h1>
           <p className="heroAboutText">
             Событие объединит участников, экспертов, представителей организаций социальной защиты и гостей мероприятия.
